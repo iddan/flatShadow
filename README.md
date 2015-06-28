@@ -1,4 +1,4 @@
-#flatShadow
+# flatShadow
 ## Add long flat shadows to text using JavaScript and CSS.
 ### How to use:
 Load flatShadow.js.
@@ -14,7 +14,8 @@ flatShadow(el, color, length, angle);
 - color is the shadow's color;
 - length is the shadow's length;
 - angle is the shadow's angle;
-###Example:<br />
+
+### Example:
 To set flatShadow to be for the element #flat, 10vh long, blue coloured and 45deg angled write:
 ```html
 <div id="flat">Flat Shadow!</div>
