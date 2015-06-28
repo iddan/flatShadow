@@ -1,47 +1,52 @@
-/* global document */
+/* jshint browser: true */
 
-/* VAR */
-var i;
-var flatShadow = '';
+function flatShadow(el, fsColor, fsLength, fsAngle) {
+    /*---- VAR ----*/
+    var i;
+    var fsAngleX;
+    var fsAngleY;
+    var fsStyle = '';
 
-/* VH */
-fsLength = fsLength * (document.body.clientHeight / 100);
+    /*-- RAD --*/
+    function getRAD(deg) {
+        return deg * Math.PI/180;
+    }
 
-/* RAD */
-function getRAD(deg) {
-    return deg * Math.PI/180;
-}
+    /*---- PHYSICAL LENGTH ----*/
+    fsLength = fsLength * (document.body.clientHeight / 100);
 
-/* ANGLE */
-fsAngleY = Math.cos(getRAD(fsAngle));
-fsAngleX = Math.sin(getRAD(fsAngle));
+    fsAngleY = Math.cos(getRAD(fsAngle));
+    fsAngleX = Math.sin(getRAD(fsAngle));
 
-if (fsAngle == 90) {
-    fsAngleY = 0;
-    fsAngleX = 1;
-}
-if (fsAngle == 180) {
-    fsAngleY = -1;
-    fsAngleX = 0;
-}
-if (fsAngle == 270) {
-    fsAngleY = 0;
-    fsAngleX = -1;
-}
-if (fsAngle == 360) {
-    fsAngleY = 1;
-    fsAngleX = 0;
-}
+    /*---- EXCEPTIONS ----*/
+    if (fsAngle == 90) {
+        fsAngleY = 0;
+        fsAngleX = 1;
+    }
 
-/* LOOP SHADDOW */
-for (i = 1; i <= fsLength; i++) {
-    flatShadow += [i] * fsAngleY + 'px ' + [i] * fsAngleX + 'px ' + fsColor + ',';
-}
+    if (fsAngle == 180) {
+        fsAngleY = -1;
+        fsAngleX = 0;
+    }
 
-/* REMOVE LAST */
-flatShadow = flatShadow.substring(0, flatShadow.length - 1) ;
+    if (fsAngle == 270) {
+        fsAngleY = 0;
+        fsAngleX = -1;
+    }
 
-/* APPLY */
-for (i=0; i < document.getElementsByClassName('flatShadow').length; i++) {
-    document.getElementsByClassName('flatShadow')[i].style.textShadow = flatShadow;
+    if (fsAngle == 360) {
+        fsAngleY = 1;
+        fsAngleX = 0;
+    }
+
+    /*---- LOOP ----*/
+    for (i = 0; i < fsLength; i++) {
+        fsStyle += i * fsAngleY + 'px ' + i * fsAngleX + 'px ' + fsColor + ',';
+    }
+
+    /*---- REMOVE LAST COMMA ----*/
+    fsStyle = fsStyle.substring(0, fsStyle.length - 1) ;
+
+    /*----  APPLY ----*/
+    el.style.textShadow = fsStyle;
 }
