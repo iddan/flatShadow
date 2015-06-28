@@ -23,4 +23,4 @@ To set flatShadow to be for the element #flat, 10vh long, blue coloured and 45de
 flatShadow(document.getElementById('flat'), 'blue', 10, 45);
 </script>
 ```
-####[DEMO](http://aniddan.github.io/flatShadow)
+####[DEMO](http://aniddan.github.io/flatShadow/demo.html)
